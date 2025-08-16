@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D20E01812E503F66003B9F6E /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01802E503F66003B9F6E /* Models */; };
+		D20E01CF2E504C14003B9F6E /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01CE2E504C14003B9F6E /* Models */; };
+		D20E01D72E504C95003B9F6E /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01D62E504C95003B9F6E /* Models */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D20E00882E4EED1D003B9F6E /* MoviesBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D20E017F2E503F47003B9F6E /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
+		D20E01C92E504B13003B9F6E /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -28,6 +30,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20E01D72E504C95003B9F6E /* Models in Frameworks */,
+				D20E01CF2E504C14003B9F6E /* Models in Frameworks */,
 				D20E01812E503F66003B9F6E /* Models in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,7 +42,7 @@
 		D20E007F2E4EED1D003B9F6E = {
 			isa = PBXGroup;
 			children = (
-				D20E017F2E503F47003B9F6E /* Models */,
+				D20E01C82E504AF4003B9F6E /* Packages */,
 				D20E008A2E4EED1D003B9F6E /* MoviesBox */,
 				D20E01692E4F16B8003B9F6E /* Frameworks */,
 				D20E00892E4EED1D003B9F6E /* Products */,
@@ -58,6 +62,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D20E01C82E504AF4003B9F6E /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				D20E01C92E504B13003B9F6E /* Networking */,
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -81,6 +93,8 @@
 			name = MoviesBox;
 			packageProductDependencies = (
 				D20E01802E503F66003B9F6E /* Models */,
+				D20E01CE2E504C14003B9F6E /* Models */,
+				D20E01D62E504C95003B9F6E /* Models */,
 			);
 			productName = MoviesBox;
 			productReference = D20E00882E4EED1D003B9F6E /* MoviesBox.app */;
@@ -345,6 +359,14 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		D20E01802E503F66003B9F6E /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		D20E01CE2E504C14003B9F6E /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		D20E01D62E504C95003B9F6E /* Models */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Models;
 		};
