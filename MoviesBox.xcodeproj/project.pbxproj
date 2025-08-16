@@ -6,13 +6,9 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		D20E015A2E4F1432003B9F6E /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01592E4F1432003B9F6E /* Models */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		D20E00882E4EED1D003B9F6E /* MoviesBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D20E01682E4F169A003B9F6E /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
+		D20E017D2E503E1A003B9F6E /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -28,7 +24,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D20E015A2E4F1432003B9F6E /* Models in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,7 +33,7 @@
 		D20E007F2E4EED1D003B9F6E = {
 			isa = PBXGroup;
 			children = (
-				D20E01682E4F169A003B9F6E /* Models */,
+				D20E017D2E503E1A003B9F6E /* Models */,
 				D20E008A2E4EED1D003B9F6E /* MoviesBox */,
 				D20E01692E4F16B8003B9F6E /* Frameworks */,
 				D20E00892E4EED1D003B9F6E /* Products */,
@@ -80,7 +75,6 @@
 			);
 			name = MoviesBox;
 			packageProductDependencies = (
-				D20E01592E4F1432003B9F6E /* Models */,
 			);
 			productName = MoviesBox;
 			productReference = D20E00882E4EED1D003B9F6E /* MoviesBox.app */;
@@ -342,13 +336,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D20E01592E4F1432003B9F6E /* Models */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Models;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D20E00802E4EED1D003B9F6E /* Project object */;
 }
