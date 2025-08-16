@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D20E01DF2E504DCA003B9F6E /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01DE2E504DCA003B9F6E /* Networking */; };
+		D20E01E42E504F29003B9F6E /* MovieModels in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01E32E504F29003B9F6E /* MovieModels */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D20E00882E4EED1D003B9F6E /* MoviesBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20E01C92E504B13003B9F6E /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
+		D20E01E22E504EAD003B9F6E /* MovieModels */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MovieModels; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -29,6 +31,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D20E01DF2E504DCA003B9F6E /* Networking in Frameworks */,
+				D20E01E42E504F29003B9F6E /* MovieModels in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 		D20E01C82E504AF4003B9F6E /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				D20E01E22E504EAD003B9F6E /* MovieModels */,
 				D20E01C92E504B13003B9F6E /* Networking */,
 			);
 			path = Packages;
@@ -89,6 +93,7 @@
 			name = MoviesBox;
 			packageProductDependencies = (
 				D20E01DE2E504DCA003B9F6E /* Networking */,
+				D20E01E32E504F29003B9F6E /* MovieModels */,
 			);
 			productName = MoviesBox;
 			productReference = D20E00882E4EED1D003B9F6E /* MoviesBox.app */;
@@ -355,6 +360,10 @@
 		D20E01DE2E504DCA003B9F6E /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
+		};
+		D20E01E32E504F29003B9F6E /* MovieModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MovieModels;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
