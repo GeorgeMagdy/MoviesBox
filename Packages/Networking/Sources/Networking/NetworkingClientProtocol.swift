@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 import MovieModels
 
-public enum APError: Error {
+public enum NCError: Error {
     case invalidURL
     case invalidResponse
     case invalidData
@@ -18,5 +18,5 @@ public enum APError: Error {
 }
 
 public protocol NetworkingClientProtocol {
-    func fetch<T: Decodable>(withNetWorkURLHelper netWorkURLHelper: NetworkURLAPIHelper) -> AnyPublisher<T, APError>
+    func fetch<T: Decodable>(withNetWorkURLHelper netWorkURLHelper: NetworkURLAPIHelper) -> AnyPublisher<T, NCError>
 }

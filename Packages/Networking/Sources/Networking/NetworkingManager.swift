@@ -10,9 +10,11 @@ import SwiftUI
 import Combine
 import MovieModels
 
-class NetworkingManager: NetworkingClientProtocol {
+public class NetworkingManager: NetworkingClientProtocol {
+    
+    public init() {}
         
-    func addDefaultHeaders(url: URL, method: String = "GET") -> URLRequest {
+    private func addDefaultHeaders(url: URL, method: String = "GET") -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -21,10 +23,10 @@ class NetworkingManager: NetworkingClientProtocol {
     }
     
     
-    func fetch<T: Decodable>(withNetWorkURLHelper netWorkURLHelper: NetworkURLAPIHelper) -> AnyPublisher<T, APError> {
+    public func fetch<T: Decodable>(withNetWorkURLHelper netWorkURLHelper: NetworkURLAPIHelper) -> AnyPublisher<T, NCError> {
         
         guard let uRL = URL(string: netWorkURLHelper.apiFullURL) else {
-            return Fail(error: APError.invalidURL).eraseToAnyPublisher()
+            return Fail(error: NCError.invalidURL).eraseToAnyPublisher()
         }
         
         let request = addDefaultHeaders(url: uRL)
@@ -33,18 +35,18 @@ class NetworkingManager: NetworkingClientProtocol {
             .tryMap { output in
                 guard let response = output.response as? HTTPURLResponse,
                       200..<300 ~= response.statusCode else {
-                    throw APError.invalidResponse
+                    throw NCError.invalidResponse
                 }
                 do {
                     return try JSONDecoder().decode(T.self, from: output.data)
                 } catch {
-                    throw APError.invalidData
+                    throw NCError.invalidData
                 }
             }.mapError({ error in
-                if let apError = error as? APError {
+                if let apError = error as? NCError {
                     return apError
                 } else {
-                    return APError.unknown
+                    return NCError.unknown
                 }
             }).eraseToAnyPublisher()
     }
