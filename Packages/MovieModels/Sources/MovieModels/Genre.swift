@@ -15,7 +15,7 @@ public struct GenreResponse: Codable, Equatable, Sendable {
     }
 }
 
-public struct Genre: Codable, Equatable, Sendable {
+public struct Genre: Codable, Hashable, Equatable, Sendable {
     public let id: Int
     public let name: String
     

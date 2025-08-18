@@ -8,11 +8,18 @@
 import Foundation
 
 // MARK: - Root Model
-public struct MovieResponse: Codable {
+public struct MovieResponse: Codable, Sendable {
     public let page: Int
     public let results: [Movie]
     public let totalPages: Int
     public let totalResults: Int
+    
+    public init(page: Int, results: [Movie], totalPages: Int, totalResults: Int) {
+        self.page = page
+        self.results = results
+        self.totalPages = totalPages
+        self.totalResults = totalResults
+    }
 
     public enum CodingKeys: String, CodingKey {
         case page
@@ -23,7 +30,7 @@ public struct MovieResponse: Codable {
 }
 
 // MARK: - Movie
-public struct Movie: Codable {
+public struct Movie: Codable, Sendable {
     public let adult: Bool
     public let backdropPath: String?
     public let genreIds: [Int]
@@ -54,5 +61,9 @@ public struct Movie: Codable {
         case video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+    }
+    
+    public var releaseYear: String? {
+        return String(releaseDate.prefix(4))
     }
 }

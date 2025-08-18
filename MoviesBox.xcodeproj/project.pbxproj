@@ -10,6 +10,7 @@
 		D20E01DF2E504DCA003B9F6E /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01DE2E504DCA003B9F6E /* Networking */; };
 		D20E01E42E504F29003B9F6E /* MovieModels in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01E32E504F29003B9F6E /* MovieModels */; };
 		D20E02022E51C8E2003B9F6E /* Caching in Frameworks */ = {isa = PBXBuildFile; productRef = D20E02012E51C8E2003B9F6E /* Caching */; };
+		D297B4842E52FAFF008964BF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D297B4832E52FAFF008964BF /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D297B4842E52FAFF008964BF /* Kingfisher in Frameworks */,
 				D20E02022E51C8E2003B9F6E /* Caching in Frameworks */,
 				D20E01DF2E504DCA003B9F6E /* Networking in Frameworks */,
 				D20E01E42E504F29003B9F6E /* MovieModels in Frameworks */,
@@ -99,6 +101,7 @@
 				D20E01DE2E504DCA003B9F6E /* Networking */,
 				D20E01E32E504F29003B9F6E /* MovieModels */,
 				D20E02012E51C8E2003B9F6E /* Caching */,
+				D297B4832E52FAFF008964BF /* Kingfisher */,
 			);
 			productName = MoviesBox;
 			productReference = D20E00882E4EED1D003B9F6E /* MoviesBox.app */;
@@ -129,6 +132,7 @@
 			mainGroup = D20E007F2E4EED1D003B9F6E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				D297B4822E52FAFF008964BF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D20E00892E4EED1D003B9F6E /* Products */;
@@ -296,7 +300,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,7 +330,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +367,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		D297B4822E52FAFF008964BF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		D20E01DE2E504DCA003B9F6E /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -375,6 +390,11 @@
 		D20E02012E51C8E2003B9F6E /* Caching */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Caching;
+		};
+		D297B4832E52FAFF008964BF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D297B4822E52FAFF008964BF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

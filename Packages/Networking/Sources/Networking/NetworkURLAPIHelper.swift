@@ -20,7 +20,7 @@ struct BaseConstantURL {
     
     //https://api.themoviedb.org/3/movie/715253?language=en-US
     
-    //https://image.tmdb.org/t/p/w200/1E5baAaEse26fej7uHcjOgEE2t2.jpg
+    //https://image.tmdb.org/t/p/w400/1E5baAaEse26fej7uHcjOgEE2t2.jpg
 }
 
 public enum NetworkURLAPIHelper {
@@ -34,7 +34,7 @@ public enum NetworkURLAPIHelper {
         case .genreList:
             return "/genre/movie/list?language=en"
         case .movieList(let page, let genreId):
-            return "/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=\(page)&sort_by=popularity.desc&with_genres=\(genreId)"
+            return "/discover/movie?include_adult=false&include_video=false&language=en-US&page=\(page)&sort_by=popularity.desc&with_genres=\(genreId)"
         case .movieDetails(let movieId):
             return "/movie/\(movieId)?language=en-US"
         case .image(let size, let imagePath):
@@ -51,17 +51,6 @@ public enum NetworkURLAPIHelper {
             return BaseConstantURL.baseURL + self.apiPath
         }
     }
-    
-    //Image
-//    if let url = URL(string: NetworkURLAPIHelper.image(size: size, imagePath: imagePath).apiFullURL) {
-//        KFImage(url)
-//            .resizable()
-//            .aspectRatio(contentMode: .fit)
-//            .frame(width: 150, height: 225)
-//            .cornerRadius(8)
-//    } else {
-//        Color.gray.frame(width: 150, height: 225)
-//    }
 
     
     //    // MARK: - Response Type
@@ -77,24 +66,5 @@ public enum NetworkURLAPIHelper {
     //            return Data.self // for image download
     //        }
     //    }
-    
-//    var apiImageFullURL : String {
-//        return self.apiPath
-//    }
+
 }
-
-
-//movieDetails
-
-//fetch(with: .movieDetails(page: "1", genreId: "28"), type: MovieDetail.self)
-//    .sink(receiveCompletion: { completion in
-//        switch completion {
-//        case .finished:
-//            print("Request completed")
-//        case .failure(let error):
-//            print("Error: \(error)")
-//        }
-//    }, receiveValue: { movieDetail in
-//        print("Movie Title: \(movieDetail.title)")
-//    })
-//    .store(in: &cancellables)

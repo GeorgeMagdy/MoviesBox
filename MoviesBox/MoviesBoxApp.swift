@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Caching
+import Networking
+import MovieModels
 
 @main
 struct MoviesBoxApp: App {
     var body: some Scene {
         WindowGroup {
-            MovieListView()
+            MovieHomeView(viewModel: MovieListViewModel(networkManager: NetworkingManager(), cachingManager: CachingHandler()))
         }
     }
 }
