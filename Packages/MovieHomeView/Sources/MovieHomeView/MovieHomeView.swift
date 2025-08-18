@@ -9,23 +9,23 @@ import SwiftUI
 import Caching
 import Networking
 import MovieModels
+import Utilities
 
-struct MovieHomeView: View {
+public struct MovieHomeView: View {
 //    @State private var selectedGenre: Int = 0
     @State private var searchText: String = ""
-    @State private var selectedMovie: Int?
     @ObservedObject private var viewModel: MovieListViewModel
     
     var searchResult: [Movie] {
         return viewModel.searchMovie(for: searchText)
     }
     
-    init(viewModel: MovieListViewModel) {
+    public init(viewModel: MovieListViewModel) {
         self.viewModel = viewModel
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.systemYellow]
     }
     
-    var body: some View {
+    public var body: some View {
         NavigationStack {
             ZStack {
                 Color.black
@@ -40,15 +40,19 @@ struct MovieHomeView: View {
                         .padding(5)
                     
                     MoviesGenresView(genres: viewModel.genres, selectedGenreID: $viewModel.selectedGenre)
-                        . padding(10)
+                        .padding(10)
                     
-                    MovieListView(movies: searchResult, selectedMovie: $selectedMovie)
+                    if viewModel.genreMovies.isEmpty {
+                        ProgressView().progressViewStyle(.circular)
+                            .padding(.top, 20)
+                    }else {
+                        MovieListView(movies: searchResult, viewModel: viewModel, selectedMovie: $viewModel.selectedMovie)
+                    }
                     
                     Spacer()
                 }.padding(10)
             }
             .toolbar{}
-            //.navigationTitle("Watch new Movies")
             .searchable(text: $searchText, prompt: "search")
         }
         .onAppear {
@@ -64,7 +68,9 @@ struct MovieHomeView: View {
 struct MovieListView: View {
     let coloums = Array(repeating: GridItem(.flexible()), count: 2)
     let movies: [Movie]
+    let viewModel: MovieListViewModel
     @Binding var selectedMovie: Int?
+    
     
     var body: some View {
         ScrollView {
@@ -94,6 +100,19 @@ struct MovieListView: View {
                             .foregroundColor(.white)
                         
                         Spacer()
+                    } .onAppear {
+                        if let lastElementID = movies.last?.id {
+                            if movie.id == lastElementID {
+                                switch viewModel.state {
+                                case .isLoading:
+                                    viewModel.loadMoreMovies()
+                                case .loadedAll:
+                                    break
+                                }
+                            }
+                        }
+                        
+                       // print(movie.title)
                     }
                 }
             }

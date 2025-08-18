@@ -10,11 +10,16 @@ import SwiftUI
 import Kingfisher
 import Networking
 
-struct MovieRemoteImage: View {
-    let imageURLString: String?
-    let size: Int
+public struct MovieRemoteImage: View {
+    public  let imageURLString: String?
+    public let size: Int
     
-    var body: some View {
+    public init(imageURLString: String?, size: Int) {
+        self.imageURLString = imageURLString
+        self.size = size
+    }
+    
+    public var body: some View {
         if let unwrappedImageURLString = imageURLString, let url = URL(string: NetworkURLAPIHelper.image(size: "\(size)", imagePath: unwrappedImageURLString).apiFullURL) {
             KFImage(url)
                 .resizable()

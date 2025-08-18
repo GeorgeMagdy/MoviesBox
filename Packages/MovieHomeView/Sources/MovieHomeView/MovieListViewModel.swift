@@ -10,21 +10,22 @@ import MovieModels
 import Networking
 import Caching
 import Combine
+import Utilities
 
-///1- GenreResponse ====> GenreList
-///2-MovieResponse ===> related to Genre Type  "string" as dictionary ===> MoviesResponses
 ///3-MovieDetail ===> related to movieId   "string"  Type as dictionary ===> MoviesDetails
 
+enum state {
+    case isLoading
+    case loadedAll
+}
 
-//[String:MovieDetail] ===> 10 Dictionary
-
-
-
-final class MovieListViewModel: ObservableObject {
+public final class MovieListViewModel: ObservableObject {
     @Published var genres: [Genre] = []
     @Published var error: Error?
     @Published var selectedGenre: Int?
     @Published var genreMovies: [Movie] = []
+    @Published var state: state = .isLoading
+    @Published public var selectedMovie: Int?
 
     
     private let networkManager: NetworkingClientProtocol
@@ -32,13 +33,17 @@ final class MovieListViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     private var movieGenreList = [Int: MovieResponse]()
     
-    init(networkManager: NetworkingClientProtocol, cachingManager: CachingHandler) {
+    public init(networkManager: NetworkingClientProtocol, cachingManager: CachingHandler) {
         self.networkManager = networkManager
         self.cachingManager = cachingManager
         loadGenreList()
         $selectedGenre.sink { [weak self] genreId in
             guard let self = self, let genreId = genreId else { return }
+            if self.movieGenreList.isEmpty {
+                loadGenresMoviesList()
+            }
             if let movieResponse = movieGenreList[genreId] {
+//                print("george here \(genreId)")
                 self.genreMovies = movieResponse.results
                 return
             }
@@ -47,9 +52,11 @@ final class MovieListViewModel: ObservableObject {
     }
 
     
-    func loadMoreMovies(for genreId: Int) {
-        let pageNum = getMoviesPageNum(for: genreId)
-        fetchGenreMovies(for: genreId, page: pageNum)
+    func loadMoreMovies() {
+        if let unwrappedSelectedGenre = selectedGenre {
+            let pageNum = getMoviesPageNum(for: unwrappedSelectedGenre)
+            fetchGenreMovies(for: unwrappedSelectedGenre, page: pageNum)
+        }
     }
     
     func searchMovie(for query: String) -> [Movie] {
@@ -70,7 +77,7 @@ private extension MovieListViewModel {
             switch result {
             case .success(let genreResponse):
                 self.genres = genreResponse.genres
-                self.fetchGenreList()
+                self.selectedGenre = self.genres.first?.id
             case .failure(let error):
                 if error == CError.fileNotFound {
                     fetchGenreList()
@@ -88,9 +95,11 @@ private extension MovieListViewModel {
             switch result {
             case .success(let movieGenreList):
                 self.movieGenreList = movieGenreList
-                
             case .failure(let error):
                 print(error)
+                if error == CError.fileNotFound {
+                    return
+                }
                 self.error = error
             }
         }
@@ -100,6 +109,7 @@ private extension MovieListViewModel {
         var pageNum: Int = 1
         if let movieResponse = movieGenreList[genreId] {
             pageNum = movieResponse.page + 1
+            print("George \(pageNum)")
         }
         return pageNum
     }
@@ -108,9 +118,13 @@ private extension MovieListViewModel {
         if let movieResponse = movieGenreList[genreId] {
             let allMovies = movieResponse.results + response.results
             self.movieGenreList[genreId] = MovieResponse(page: response.page, results: allMovies, totalPages: response.totalPages, totalResults: response.totalResults)
+            if response.page == response.totalPages {
+                self.state = .loadedAll
+            }
         }else {
             self.movieGenreList[genreId] = response
         }
+        self.genreMovies = self.movieGenreList[genreId]?.results ?? []
     }
 }
 
@@ -140,7 +154,6 @@ private extension MovieListViewModel {
                 }
             } receiveValue: { [weak self] (response: MovieResponse) in
                 guard let self = self else { return }
-                self.genreMovies = response.results
                 
                 self.updateMovieList(for: genreId, with: response)
                 

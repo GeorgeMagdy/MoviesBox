@@ -22,7 +22,7 @@ struct MoviesGenresView: View {
                         selectedGenreID = genre.id
                     } label: {
                         ZStack {
-                            let base = Capsule()//RoundedRectangle(cornerRadius: 25)
+                            let base = Capsule()
                             base.foregroundColor(selectedGenreID == genre.id ? .yellow : .clear)
                             base.strokeBorder(lineWidth: 2)
                             Text(genre.name)

@@ -11,6 +11,7 @@
 		D20E01E42E504F29003B9F6E /* MovieModels in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01E32E504F29003B9F6E /* MovieModels */; };
 		D20E02022E51C8E2003B9F6E /* Caching in Frameworks */ = {isa = PBXBuildFile; productRef = D20E02012E51C8E2003B9F6E /* Caching */; };
 		D297B4842E52FAFF008964BF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D297B4832E52FAFF008964BF /* Kingfisher */; };
+		D297B4DA2E53BA98008964BF /* MovieHomeView in Frameworks */ = {isa = PBXBuildFile; productRef = D297B4D92E53BA98008964BF /* MovieHomeView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,8 @@
 		D20E01C92E504B13003B9F6E /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
 		D20E01E22E504EAD003B9F6E /* MovieModels */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MovieModels; sourceTree = "<group>"; };
 		D20E02002E51C7FE003B9F6E /* Caching */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Caching; sourceTree = "<group>"; };
+		D297B4D72E53B553008964BF /* MovieHomeView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MovieHomeView; sourceTree = "<group>"; };
+		D297B4D82E53B799008964BF /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D297B4DA2E53BA98008964BF /* MovieHomeView in Frameworks */,
 				D297B4842E52FAFF008964BF /* Kingfisher in Frameworks */,
 				D20E02022E51C8E2003B9F6E /* Caching in Frameworks */,
 				D20E01DF2E504DCA003B9F6E /* Networking in Frameworks */,
@@ -71,6 +75,8 @@
 		D20E01C82E504AF4003B9F6E /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				D297B4D82E53B799008964BF /* Utilities */,
+				D297B4D72E53B553008964BF /* MovieHomeView */,
 				D20E02002E51C7FE003B9F6E /* Caching */,
 				D20E01E22E504EAD003B9F6E /* MovieModels */,
 				D20E01C92E504B13003B9F6E /* Networking */,
@@ -102,6 +108,7 @@
 				D20E01E32E504F29003B9F6E /* MovieModels */,
 				D20E02012E51C8E2003B9F6E /* Caching */,
 				D297B4832E52FAFF008964BF /* Kingfisher */,
+				D297B4D92E53BA98008964BF /* MovieHomeView */,
 			);
 			productName = MoviesBox;
 			productReference = D20E00882E4EED1D003B9F6E /* MoviesBox.app */;
@@ -395,6 +402,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D297B4822E52FAFF008964BF /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		D297B4D92E53BA98008964BF /* MovieHomeView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MovieHomeView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
