@@ -12,7 +12,6 @@ import MovieModels
 import Utilities
 
 public struct MovieHomeView: View {
-//    @State private var selectedGenre: Int = 0
     @State private var searchText: String = ""
     @ObservedObject private var viewModel: MovieListViewModel
     
@@ -26,37 +25,39 @@ public struct MovieHomeView: View {
     }
     
     public var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.black
-                    .ignoresSafeArea()
+        ZStack {
+            Color.black
+                .ignoresSafeArea()
+            
+            VStack {
+                Text("Watch new Movies")
+                    .font(.title)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(.yellow)
+                    .padding(5)
                 
-                VStack {
-                    Text("Watch new Movies")
-                        .font(.title)
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(.yellow)
-                        .padding(5)
-                    
-                    MoviesGenresView(genres: viewModel.genres, selectedGenreID: $viewModel.selectedGenre)
-                        .padding(10)
-                    
-                    if viewModel.genreMovies.isEmpty {
-                        ProgressView().progressViewStyle(.circular)
-                            .padding(.top, 20)
-                    }else {
-                        MovieListView(movies: searchResult, viewModel: viewModel, selectedMovie: $viewModel.selectedMovie)
-                    }
-                    
-                    Spacer()
-                }.padding(10)
-            }
-            .toolbar{}
-            .searchable(text: $searchText, prompt: "search")
+                MoviesGenresView(genres: viewModel.genres, selectedGenreID: $viewModel.selectedGenre)
+                    .padding(10)
+                
+                if viewModel.genreMovies.isEmpty {
+                    ProgressView().progressViewStyle(.circular)
+                        .padding(.top, 20)
+                }else {
+                    MovieListView(movies: searchResult, viewModel: viewModel, selectedMovie: $viewModel.selectedMovie)
+                }
+                
+                Spacer()
+            }.padding(10)
         }
+        .toolbar{}
+        .searchable(text: $searchText, prompt: "search")
         .onAppear {
             UISearchTextField.appearance().backgroundColor = UIColor.secondarySystemBackground
+        }.alert(item: $viewModel.alertItem) { alertItem in
+            Alert(title: alertItem.title,
+                  message: alertItem.message,
+                  dismissButton: alertItem.dismissButton)
         }
     }
 }
@@ -71,17 +72,13 @@ struct MovieListView: View {
     let viewModel: MovieListViewModel
     @Binding var selectedMovie: Int?
     
-    
     var body: some View {
         ScrollView {
             LazyVGrid(columns: coloums, alignment: .leading, spacing: 10) {
                 ForEach(movies, id: \.id) { movie in
                     VStack(alignment: .leading) {
-                        //.background(Color.gray)
-
                         MovieRemoteImage(imageURLString: movie.posterPath, size: 300)
                             .aspectRatio(contentMode: .fit)
-                            //.frame(width: 170, height: 250)
                             .padding(.bottom, 1)
                         
                         Text(movie.title)
@@ -100,7 +97,9 @@ struct MovieListView: View {
                             .foregroundColor(.white)
                         
                         Spacer()
-                    } .onAppear {
+                    }.onTapGesture {
+                        selectedMovie = movie.id
+                    }.onAppear {
                         if let lastElementID = movies.last?.id {
                             if movie.id == lastElementID {
                                 switch viewModel.state {
@@ -111,8 +110,6 @@ struct MovieListView: View {
                                 }
                             }
                         }
-                        
-                       // print(movie.title)
                     }
                 }
             }

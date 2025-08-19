@@ -7,11 +7,24 @@
 
 import Foundation
 
-public enum CError: Error, Equatable {
+public enum CError: Error, Equatable, Identifiable {
     case fileNotFound
     case decodingFailed
     case encodingFailed
     case unknown(Error)
+    
+    public var id: String {
+        switch self {
+        case .fileNotFound:
+            return "fileNotFound"
+        case .decodingFailed:
+            return "decodingFailed"
+        case .encodingFailed:
+            return "encodingFailed"
+        case .unknown(let error):
+            return "unknown \(error.localizedDescription)"
+        }
+    }
     
     public static func == (lhs: CError, rhs: CError) -> Bool {
         switch (lhs, rhs) {

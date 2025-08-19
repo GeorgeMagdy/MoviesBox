@@ -26,7 +26,6 @@ struct MoviesGenresView: View {
                             base.foregroundColor(selectedGenreID == genre.id ? .yellow : .clear)
                             base.strokeBorder(lineWidth: 2)
                             Text(genre.name)
-                                //.font(.title3)
                                 .fontWeight(.medium)
                                 .foregroundColor(selectedGenreID == genre.id ? .black : .white)
                                 .minimumScaleFactor(0.5)

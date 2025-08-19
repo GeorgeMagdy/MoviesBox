@@ -12,8 +12,6 @@ import Caching
 import Combine
 import Utilities
 
-///3-MovieDetail ===> related to movieId   "string"  Type as dictionary ===> MoviesDetails
-
 enum state {
     case isLoading
     case loadedAll
@@ -21,7 +19,7 @@ enum state {
 
 public final class MovieListViewModel: ObservableObject {
     @Published var genres: [Genre] = []
-    @Published var error: Error?
+    @Published var alertItem: AlertItem?
     @Published var selectedGenre: Int?
     @Published var genreMovies: [Movie] = []
     @Published var state: state = .isLoading
@@ -39,11 +37,7 @@ public final class MovieListViewModel: ObservableObject {
         loadGenreList()
         $selectedGenre.sink { [weak self] genreId in
             guard let self = self, let genreId = genreId else { return }
-            if self.movieGenreList.isEmpty {
-                loadGenresMoviesList()
-            }
             if let movieResponse = movieGenreList[genreId] {
-//                print("george here \(genreId)")
                 self.genreMovies = movieResponse.results
                 return
             }
@@ -77,6 +71,7 @@ private extension MovieListViewModel {
             switch result {
             case .success(let genreResponse):
                 self.genres = genreResponse.genres
+                loadGenresMoviesList()
                 self.selectedGenre = self.genres.first?.id
             case .failure(let error):
                 if error == CError.fileNotFound {
@@ -84,14 +79,14 @@ private extension MovieListViewModel {
                     return
                 }
                 print(error)
-                self.error = error
+                self.alertItem = AlertContext.unknown
             }
         }
     }
     
     private func loadGenresMoviesList() {
         if movieGenreList.isEmpty {
-           let result = cachingManager.loadFromFile([Int: MovieResponse].self, fileName: Constants.StorageKeys.genresList)
+           let result = cachingManager.loadFromFile([Int: MovieResponse].self, fileName: Constants.StorageKeys.genresMoviesList)
             switch result {
             case .success(let movieGenreList):
                 self.movieGenreList = movieGenreList
@@ -100,7 +95,7 @@ private extension MovieListViewModel {
                 if error == CError.fileNotFound {
                     return
                 }
-                self.error = error
+                self.alertItem = AlertContext.unknown
             }
         }
     }
@@ -135,12 +130,13 @@ private extension MovieListViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
-                    self?.error = error
+                    print(error.localizedDescription)
+                    self?.alertItem = AlertContext.unableToComplete
                 }
             } receiveValue: { [weak self] (response: GenreResponse) in
                 guard let self = self else { return }
                 self.genres = response.genres
-                //self.cachingManager.saveToFile(response, fileName: Constants.StorageKeys.genresList)
+                self.cachingManager.saveToFile(response, fileName: Constants.StorageKeys.genresList)
                 self.selectedGenre = response.genres.first?.id
             }.store(in: &cancellables)
     }
@@ -150,14 +146,13 @@ private extension MovieListViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
-                    self?.error = error
+                    print(error.localizedDescription)
+                    self?.alertItem = AlertContext.unableToComplete
                 }
             } receiveValue: { [weak self] (response: MovieResponse) in
                 guard let self = self else { return }
-                
                 self.updateMovieList(for: genreId, with: response)
-                
-                // self.cachingManager.saveToFile(self.movieGenreList, fileName: Constants.StorageKeys.genresMoviesList)
+                self.cachingManager.saveToFile(self.movieGenreList, fileName: Constants.StorageKeys.genresMoviesList)
             }.store(in: &cancellables)
     }
 }
