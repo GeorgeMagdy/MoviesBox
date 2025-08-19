@@ -26,7 +26,7 @@ struct MoviesBoxApp: App {
                     }.navigationDestination(for: AppRoute.self) { route in
                         switch route {
                         case .detail(let id):
-                            MovieDetailsView(viewModel: MovieDetailsViewModel(networkManager: NetworkingManager(), cachingManager: CachingHandler(), movieId: id))//19995
+                            MovieDetailsView(viewModel: MovieDetailsViewModel(networkManager: NetworkingManager(), cachingManager: CachingHandler(), movieId: id))
                         }
                     }
             }

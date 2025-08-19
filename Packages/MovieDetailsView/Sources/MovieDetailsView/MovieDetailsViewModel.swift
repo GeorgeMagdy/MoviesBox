@@ -35,8 +35,8 @@ public final class MovieDetailsViewModel: ObservableObject {
     }
 }
 
-private extension MovieDetailsViewModel {
-    private func loadMovieDetails() {
+extension MovieDetailsViewModel {
+     func loadMovieDetails() {
         let result = cachingManager.loadFromFile([Int: MovieDetail].self, fileName: Constants.StorageKeys.movieDetails)
         switch result {
         case .success(let movieDetailsResponse):
@@ -67,9 +67,8 @@ private extension MovieDetailsViewModel {
             } receiveValue: { [weak self] (response: MovieDetail) in
                 guard let self = self else { return }
                 self.moviesDetails[movieId] = response
-                
-                self.movieDetail = response
                 self.cachingManager.saveToFile(self.moviesDetails, fileName: Constants.StorageKeys.movieDetails)
+                self.movieDetail = response
             }.store(in: &cancellables)
     }
 }

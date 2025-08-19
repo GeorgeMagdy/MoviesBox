@@ -124,7 +124,7 @@ private extension MovieListViewModel {
 }
 
 //MARK: - Network calls
-private extension MovieListViewModel {
+extension MovieListViewModel {
     func fetchGenreList() {
         networkManager.fetch(withNetWorkURLHelper: .genreList)
             .receive(on: DispatchQueue.main)
