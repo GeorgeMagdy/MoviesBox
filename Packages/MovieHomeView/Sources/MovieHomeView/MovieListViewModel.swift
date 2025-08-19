@@ -29,7 +29,7 @@ public final class MovieListViewModel: ObservableObject {
     private let networkManager: NetworkingClientProtocol
     private let cachingManager: CachingHandler
     private var cancellables: Set<AnyCancellable> = []
-    private var movieGenreList = [Int: MovieResponse]()
+    var movieGenreList = [Int: MovieResponse]()
     
     public init(networkManager: NetworkingClientProtocol, cachingManager: CachingHandler) {
         self.networkManager = networkManager
@@ -64,8 +64,8 @@ public final class MovieListViewModel: ObservableObject {
 }
 
 
-private extension MovieListViewModel {
-    private func loadGenreList() {
+extension MovieListViewModel {
+    func loadGenreList() {
         if genres.isEmpty {
            let result = cachingManager.loadFromFile(GenreResponse.self, fileName: Constants.StorageKeys.genresList)
             switch result {
@@ -84,7 +84,7 @@ private extension MovieListViewModel {
         }
     }
     
-    private func loadGenresMoviesList() {
+    func loadGenresMoviesList() {
         if movieGenreList.isEmpty {
            let result = cachingManager.loadFromFile([Int: MovieResponse].self, fileName: Constants.StorageKeys.genresMoviesList)
             switch result {
@@ -100,11 +100,10 @@ private extension MovieListViewModel {
         }
     }
     
-    private func getMoviesPageNum(for genreId: Int) -> Int {
+    func getMoviesPageNum(for genreId: Int) -> Int {
         var pageNum: Int = 1
         if let movieResponse = movieGenreList[genreId] {
             pageNum = movieResponse.page + 1
-            print("George \(pageNum)")
         }
         return pageNum
     }

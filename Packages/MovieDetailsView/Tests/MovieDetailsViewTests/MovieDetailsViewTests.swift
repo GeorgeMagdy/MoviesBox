@@ -12,6 +12,7 @@ final class MovieDetailsViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        try? CachingHandler().removeFile(fileName: Constants.StorageKeys.movieDetails)
         sut = MovieDetailsViewModel(networkManager: NetworkingManager(), cachingManager: CachingHandler(), movieId: 19995)
     }
     
@@ -22,8 +23,6 @@ final class MovieDetailsViewTests: XCTestCase {
     
     func testFetchMovieDetails() {
         let expectation = XCTestExpectation(description: "FetchRequest")
-        try? CachingHandler().removeFile(fileName: Constants.StorageKeys.movieDetails)
-        sut.loadMovieDetails()
         sut.$movieDetail
             .dropFirst()
             .sink { movieDetail in
