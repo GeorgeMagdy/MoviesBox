@@ -29,6 +29,7 @@ public final class MovieListViewModel: ObservableObject {
     private let networkManager: NetworkingClientProtocol
     private let cachingManager: CachingHandler
     private var cancellables: Set<AnyCancellable> = []
+    private var allMoviesPageNum: Int = 1
     var movieGenreList = [Int: MovieResponse]()
     
     public init(networkManager: NetworkingClientProtocol, cachingManager: CachingHandler) {
@@ -50,6 +51,9 @@ public final class MovieListViewModel: ObservableObject {
         if let unwrappedSelectedGenre = selectedGenre {
             let pageNum = getMoviesPageNum(for: unwrappedSelectedGenre)
             fetchGenreMovies(for: unwrappedSelectedGenre, page: pageNum)
+        }else {
+            allMoviesPageNum +=  1
+            fetchAllMovies()
         }
     }
     
@@ -72,7 +76,7 @@ extension MovieListViewModel {
             case .success(let genreResponse):
                 self.genres = genreResponse.genres
                 loadGenresMoviesList()
-                self.selectedGenre = self.genres.first?.id
+                loadMoviesList()
             case .failure(let error):
                 if error == CError.fileNotFound {
                     fetchGenreList()
@@ -97,6 +101,21 @@ extension MovieListViewModel {
                 }
                 self.alertItem = AlertContext.unknown
             }
+        }
+    }
+    
+    func loadMoviesList() {
+        let result = cachingManager.loadFromFile([Movie].self, fileName: Constants.StorageKeys.moviesList)
+        switch result {
+        case .success(let movieList):
+            self.genreMovies = movieList
+        case .failure(let error):
+            print(error)
+            if error == CError.fileNotFound {
+                self.fetchAllMovies()
+                return
+            }
+            self.alertItem = AlertContext.unknown
         }
     }
     
@@ -152,6 +171,21 @@ extension MovieListViewModel {
                 guard let self = self else { return }
                 self.updateMovieList(for: genreId, with: response)
                 self.cachingManager.saveToFile(self.movieGenreList, fileName: Constants.StorageKeys.genresMoviesList)
+            }.store(in: &cancellables)
+    }
+    
+    func fetchAllMovies() {
+        networkManager.fetch(withNetWorkURLHelper: .movieList(page: "\(allMoviesPageNum)", genreId: nil))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    print(error.localizedDescription)
+                    self?.alertItem = AlertContext.unableToComplete
+                }
+            } receiveValue: { [weak self] (response: MovieResponse) in
+                guard let self = self else { return }
+                genreMovies += response.results
+                self.cachingManager.saveToFile(self.genreMovies, fileName: Constants.StorageKeys.moviesList)
             }.store(in: &cancellables)
     }
 }

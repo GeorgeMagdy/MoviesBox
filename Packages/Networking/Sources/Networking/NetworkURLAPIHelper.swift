@@ -17,7 +17,7 @@ struct BaseConstantURL {
 
 public enum NetworkURLAPIHelper {
     case genreList
-    case movieList(page: String, genreId: String)
+    case movieList(page: String, genreId: String?)
     case movieDetails(movieId: String)
     case image(size: String, imagePath: String)
     
@@ -26,7 +26,11 @@ public enum NetworkURLAPIHelper {
         case .genreList:
             return "/genre/movie/list?language=en"
         case .movieList(let page, let genreId):
-            return "/discover/movie?include_adult=false&include_video=false&language=en-US&page=\(page)&sort_by=popularity.desc&with_genres=\(genreId)"
+            if let genreId = genreId {
+                return "/discover/movie?include_adult=false&include_video=false&language=en-US&page=\(page)&sort_by=popularity.desc&with_genres=\(genreId)"
+            }else {
+                return "/discover/movie?include_adult=false&include_video=false&language=en-US&page=\(page)&sort_by=popularity.desc"
+            }
         case .movieDetails(let movieId):
             return "/movie/\(movieId)?language=en-US"
         case .image(let size, let imagePath):
