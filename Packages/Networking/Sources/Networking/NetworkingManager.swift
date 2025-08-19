@@ -50,37 +50,4 @@ public class NetworkingManager: NetworkingClientProtocol {
                 }
             }).eraseToAnyPublisher()
     }
-    
-//    private func handleResponse(data: Data?, response: URLResponse?) throws -> UIImage {
-//        guard let response = response as? HTTPURLResponse,
-//              response.statusCode >= 200 && response.statusCode < 300 else {
-//            throw APError.invalidResponse
-//        }
-//        
-//        guard let data = data,
-//              let image = UIImage(data: data) else {
-//            throw APError.invalidResponse
-//        }
-//        
-//        return image
-//    }
-    
-//    func downloadImage(withNetWorkURLHelper netWorkURLHelper: NetworkURLAPIHelper) -> AnyPublisher<UIImage, APError> {
-//        //KFImage(imageURL)
-//        guard let uRL = URL(string: netWorkURLHelper.apiImageFullURL) else {
-//            return Fail(error: APError.invalidURL).eraseToAnyPublisher()
-//        }
-//        
-//        let request = addDefaultHeaders(url: uRL)
-//        
-//        return URLSession.shared.dataTaskPublisher(for: request)
-//            .tryMap(handleResponse)
-//            .mapError({ error in
-//                if let apError = error as? APError {
-//                    return apError
-//                } else {
-//                    return APError.unknown
-//                }
-//            }).eraseToAnyPublisher()
-//    }
 }

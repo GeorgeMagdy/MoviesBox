@@ -13,14 +13,6 @@ struct BaseConstantURL {
     static let imageURL = "https://image.tmdb.org"
     
     static let token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ODViZTczM2JmNjE1NGE3ZDYzNGFmN2Y1ODljMTA0YSIsIm5iZiI6MTc1NTIzNTcxOS41MDMsInN1YiI6IjY4OWVjNTg3ODI5ZmI4OTk0MThlYzcwMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7_RfUEdNGw0ylXD3L4E2gi4tqGYZVLe9NEg2rX6eM6E"
-    
-    //"https://api.themoviedb.org/3/genre/movie/list?language=en"
-    
-    //"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=2&sort_by=popularity.desc&with_genres=28"
-    
-    //https://api.themoviedb.org/3/movie/715253?language=en-US
-    
-    //https://image.tmdb.org/t/p/w400/1E5baAaEse26fej7uHcjOgEE2t2.jpg
 }
 
 public enum NetworkURLAPIHelper {
@@ -51,20 +43,4 @@ public enum NetworkURLAPIHelper {
             return BaseConstantURL.baseURL + self.apiPath
         }
     }
-
-    
-    //    // MARK: - Response Type
-    //    public var responseType: Decodable.Type {
-    //        switch self {
-    //        case .genreList:
-    //            return Genre.self
-    //        case .movieList(_):
-    //            return MovieResponse.self
-    //        case .movieDetails(_, _):
-    //            return MovieDetail.self
-    //        case .image(_, _):
-    //            return Data.self // for image download
-    //        }
-    //    }
-
 }

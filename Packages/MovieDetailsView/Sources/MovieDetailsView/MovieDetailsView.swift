@@ -33,8 +33,6 @@ public struct MovieDetailsView: View {
                             MovieRemoteImage(imageURLString: movieDetail.posterPath, size: 300)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 90, height: 100)
-                                //.background(Color.red)
-                                
                             
                             VStack(alignment: .leading) {
                                 Text("\(movieDetail.title)  \(movieDetail.releaseDate.year) - \(movieDetail.releaseDate.month)")
@@ -43,9 +41,6 @@ public struct MovieDetailsView: View {
                                     .fontWeight(.bold)
                                     .minimumScaleFactor(0.5)
                                     .foregroundColor(.white)
-                                    //.background(Color.red)
-                                    //.padding(.top, 8)
-                                
                                 
                                 Text(movieDetail.movieGenres ?? "")
                                     .font(.title3)
@@ -53,9 +48,6 @@ public struct MovieDetailsView: View {
                                     .fontWeight(.regular)
                                     .minimumScaleFactor(0.5)
                                     .foregroundColor(.white)
-                                    //.background(Color.red)
-                                
-                                
                             }
                             Spacer()
                         }.padding(.top, 10)
@@ -63,7 +55,6 @@ public struct MovieDetailsView: View {
                             .font(.title2)
                             .fontWeight(.medium)
                             .foregroundColor(.white)
-                            //.background(Color.red)
                             .padding(5)
                         
                         HStack(alignment: .lastTextBaseline) {
@@ -71,8 +62,7 @@ public struct MovieDetailsView: View {
                                 .font(.title3)
                                 .fontWeight(.medium)
                                 .foregroundColor(.white)
-                                //.background(Color.red)
-                                
+                            
                             Link(movieDetail.homeURLString, destination: movieDetail.homeURL)
                                 .font(.callout)
                                 .fontWeight(.bold)
@@ -107,7 +97,7 @@ public struct MovieDetailsView: View {
 }
 
 #Preview {
-    MovieDetailsView(viewModel: MovieDetailsViewModel(networkManager: NetworkingManager(), cachingManager: CachingHandler(), movieId: 19995))//715253//19995
+    MovieDetailsView(viewModel: MovieDetailsViewModel(networkManager: NetworkingManager(), cachingManager: CachingHandler(), movieId: 19995))
 }
 
 struct itemAndValueView: View {
@@ -120,14 +110,12 @@ struct itemAndValueView: View {
                 .fontWeight(.medium)
                 .minimumScaleFactor(0.5)
                 .foregroundColor(.white)
-                //.background(Color.red)
             
             Text(value)
                 .font(.title3)
                 .fontWeight(.regular)
                 .minimumScaleFactor(0.5)
                 .foregroundColor(.white)
-                //.background(Color.red)
                 
         }.padding(.leading, 15)
     }
