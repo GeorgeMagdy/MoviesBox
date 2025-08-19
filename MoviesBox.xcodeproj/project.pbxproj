@@ -6,8 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D20E01DF2E504DCA003B9F6E /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01DE2E504DCA003B9F6E /* Networking */; };
+		D20E01E42E504F29003B9F6E /* MovieModels in Frameworks */ = {isa = PBXBuildFile; productRef = D20E01E32E504F29003B9F6E /* MovieModels */; };
+		D20E02022E51C8E2003B9F6E /* Caching in Frameworks */ = {isa = PBXBuildFile; productRef = D20E02012E51C8E2003B9F6E /* Caching */; };
+		D297B4DA2E53BA98008964BF /* MovieHomeView in Frameworks */ = {isa = PBXBuildFile; productRef = D297B4D92E53BA98008964BF /* MovieHomeView */; };
+		D297B4E12E545A6A008964BF /* MovieDetailsView in Frameworks */ = {isa = PBXBuildFile; productRef = D297B4E02E545A6A008964BF /* MovieDetailsView */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D20E00882E4EED1D003B9F6E /* MoviesBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D20E01C92E504B13003B9F6E /* Networking */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Networking; sourceTree = "<group>"; };
+		D20E01E22E504EAD003B9F6E /* MovieModels */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MovieModels; sourceTree = "<group>"; };
+		D20E02002E51C7FE003B9F6E /* Caching */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Caching; sourceTree = "<group>"; };
+		D297B4D72E53B553008964BF /* MovieHomeView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MovieHomeView; sourceTree = "<group>"; };
+		D297B4D82E53B799008964BF /* Utilities */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utilities; sourceTree = "<group>"; };
+		D297B4DF2E5459D2008964BF /* MovieDetailsView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MovieDetailsView; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +37,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D297B4DA2E53BA98008964BF /* MovieHomeView in Frameworks */,
+				D20E02022E51C8E2003B9F6E /* Caching in Frameworks */,
+				D20E01DF2E504DCA003B9F6E /* Networking in Frameworks */,
+				D297B4E12E545A6A008964BF /* MovieDetailsView in Frameworks */,
+				D20E01E42E504F29003B9F6E /* MovieModels in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +51,9 @@
 		D20E007F2E4EED1D003B9F6E = {
 			isa = PBXGroup;
 			children = (
+				D20E01C82E504AF4003B9F6E /* Packages */,
 				D20E008A2E4EED1D003B9F6E /* MoviesBox */,
+				D20E01692E4F16B8003B9F6E /* Frameworks */,
 				D20E00892E4EED1D003B9F6E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +64,26 @@
 				D20E00882E4EED1D003B9F6E /* MoviesBox.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D20E01692E4F16B8003B9F6E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D20E01C82E504AF4003B9F6E /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				D297B4DF2E5459D2008964BF /* MovieDetailsView */,
+				D297B4D82E53B799008964BF /* Utilities */,
+				D297B4D72E53B553008964BF /* MovieHomeView */,
+				D20E02002E51C7FE003B9F6E /* Caching */,
+				D20E01E22E504EAD003B9F6E /* MovieModels */,
+				D20E01C92E504B13003B9F6E /* Networking */,
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +106,11 @@
 			);
 			name = MoviesBox;
 			packageProductDependencies = (
+				D20E01DE2E504DCA003B9F6E /* Networking */,
+				D20E01E32E504F29003B9F6E /* MovieModels */,
+				D20E02012E51C8E2003B9F6E /* Caching */,
+				D297B4D92E53BA98008964BF /* MovieHomeView */,
+				D297B4E02E545A6A008964BF /* MovieDetailsView */,
 			);
 			productName = MoviesBox;
 			productReference = D20E00882E4EED1D003B9F6E /* MoviesBox.app */;
@@ -94,6 +140,8 @@
 			);
 			mainGroup = D20E007F2E4EED1D003B9F6E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D20E00892E4EED1D003B9F6E /* Products */;
 			projectDirPath = "";
@@ -260,6 +308,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -289,6 +338,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,6 +374,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D20E01DE2E504DCA003B9F6E /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		D20E01E32E504F29003B9F6E /* MovieModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MovieModels;
+		};
+		D20E02012E51C8E2003B9F6E /* Caching */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Caching;
+		};
+		D297B4D92E53BA98008964BF /* MovieHomeView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MovieHomeView;
+		};
+		D297B4E02E545A6A008964BF /* MovieDetailsView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MovieDetailsView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D20E00802E4EED1D003B9F6E /* Project object */;
 }
